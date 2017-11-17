@@ -214,21 +214,29 @@ public class StepBar extends View {
         if (mTotalStep <= 0 || mCompleteStep < 0 || mCompleteStep > mTotalStep) {
             return;
         }
-        Paint mCirclePaint=new Paint();
+        Paint mCirclePaint = new Paint();
         mCirclePaint.setAntiAlias(true);
         mCirclePaint.setStyle(Paint.Style.FILL);
         mCirclePaint.setColor(mUnDoneColor);
         float half = mLineHeight / 2;
         // 左边圆
-        canvas.drawCircle(mLeftX+half,mLeftY + half,half,mCirclePaint);
+        canvas.drawCircle(mLeftX + half, mLeftY + half, half, mCirclePaint);
         // 右边圆
-        canvas.drawCircle(mRightX - half,mRightY - half,half,mCirclePaint);
+        canvas.drawCircle(mRightX - half, mRightY - half, half, mCirclePaint);
         // 中间矩形
-        canvas.drawRect(mLeftX + half,mLeftY,mRightX - half,mRightY,mCirclePaint);
+        canvas.drawRect(mLeftX + half, mLeftY, mRightX - half, mRightY, mCirclePaint);
 
         //画已经完成的步骤(圆形加矩形)
+        float currentRightX = mCompleteStep * mDistance;
+        float currentLeftX = currentRightX - mDistance;
 
-
+        mCirclePaint.setColor(mDoneColor);
+        // 左边圆
+        canvas.drawCircle(currentLeftX + half, mLeftY + half, half, mCirclePaint);
+        // 右边圆
+        canvas.drawCircle(currentRightX - half, mRightY - half, half, mCirclePaint);
+        // 中间矩形
+        canvas.drawRect(currentLeftX + half, mLeftY, currentRightX - half, mRightY, mCirclePaint);
     }
 
     /**
@@ -253,9 +261,26 @@ public class StepBar extends View {
 
     /**
      * 设置步骤条的高度
+     *
      * @param mLineHeight
      */
     public void setLineHeight(float mLineHeight) {
         this.mLineHeight = mLineHeight;
+    }
+
+    public void setSmallRadius(float mSmallRadius) {
+        this.mSmallRadius = mSmallRadius;
+    }
+
+    public void setLargeRadius(float mLargeRadius) {
+        this.mLargeRadius = mLargeRadius;
+    }
+
+    public void setUnDoneColor(int mUnDoneColor) {
+        this.mUnDoneColor = mUnDoneColor;
+    }
+
+    public void setDoneColor(int mDoneColor) {
+        this.mDoneColor = mDoneColor;
     }
 }

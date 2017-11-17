@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StepView">
+        <attr name="lineHeight" format="dimension"/>
+        <attr name="smallRadius" format="dimension"/>
+        <attr name="largeRadius" format="dimension"/>
+        <attr name="undoneColor" format="color"/>
+        <attr name="doneColor" format="color"/>
+        <attr name="totalStep" format="integer"/>
+        <attr name="completeStep" format="integer"/>
+    </declare-styleable>
+</resources>
