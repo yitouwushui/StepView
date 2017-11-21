@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- *
  * @author ding
  * @date 2017/11/15
  */
@@ -93,15 +92,16 @@ public class StepView extends FrameLayout {
             throw new IllegalArgumentException("标题和步数不一致");
         }
         int stepNum = mStepBar.getTotalStep();
-        for (int i = 0; i < stepNum; i++) {
-            final float stepPos = mStepBar.getPositionByStep(i);
+        for (int i = 1; i <= stepNum; i++) {
+            final float stepPos = mStepBar.getPositionByStep(i) + mStepBar.getDistance() / 2;
             final TextView title = new TextView(this.getContext());
             title.setText(mStepTitles.get(i - 1));
             title.setSingleLine();
             title.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    title.setTranslationX(stepPos - title.getMeasuredWidth() / 2);
+                    float x = stepPos - title.getMeasuredWidth() / 2;
+                    title.setTranslationX(x);
                     title.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });

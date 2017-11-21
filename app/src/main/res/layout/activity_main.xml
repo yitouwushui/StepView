@@ -13,6 +13,18 @@
         step:totalStep="4"
         step:completeStep="1"
         class="com.yitouwushui.stepview.StepView"
-        android:id="@+id/view" />
+        android:id="@+id/step_view" />
+
+    <Button
+        android:text="next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_next" />
+
+    <Button
+        android:text="reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_reset" />
 
 </LinearLayout>

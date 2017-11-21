@@ -11,7 +11,8 @@ import android.util.Log;
 import android.view.View;
 
 /**
- * Created by ding on 2017/11/15.
+ * @author ding
+ * @date 2017/11/15
  */
 
 public class StepBar extends View {
@@ -28,7 +29,7 @@ public class StepBar extends View {
     /**
      * 默认线条高度
      */
-    public static final int DEFAULT_LINE_HEIGHT = 10;
+    public static final int DEFAULT_LINE_HEIGHT = 30;
     /**
      * 默认小圆的半径
      */
@@ -109,6 +110,15 @@ public class StepBar extends View {
      */
     public int getTotalStep() {
         return mTotalStep;
+    }
+
+    /**
+     * 获取步骤间距
+     *
+     * @return
+     */
+    public float getDistance() {
+        return mDistance;
     }
 
     /**
@@ -226,17 +236,19 @@ public class StepBar extends View {
         // 中间矩形
         canvas.drawRect(mLeftX + half, mLeftY, mRightX - half, mRightY, mCirclePaint);
 
-        //画已经完成的步骤(圆形加矩形)
-        float currentRightX = mCompleteStep * mDistance;
-        float currentLeftX = currentRightX - mDistance;
+        if (mCompleteStep > 0) {
+            //画已经完成的步骤(圆形加矩形)
+            float currentRightX = mCompleteStep * mDistance + getPaddingLeft();
+            float currentLeftX = currentRightX - mDistance;
 
-        mCirclePaint.setColor(mDoneColor);
-        // 左边圆
-        canvas.drawCircle(currentLeftX + half, mLeftY + half, half, mCirclePaint);
-        // 右边圆
-        canvas.drawCircle(currentRightX - half, mRightY - half, half, mCirclePaint);
-        // 中间矩形
-        canvas.drawRect(currentLeftX + half, mLeftY, currentRightX - half, mRightY, mCirclePaint);
+            mCirclePaint.setColor(mDoneColor);
+            // 左边圆
+            canvas.drawCircle(currentLeftX + half, mLeftY + half, half, mCirclePaint);
+            // 右边圆
+            canvas.drawCircle(currentRightX - half, mRightY - half, half, mCirclePaint);
+            // 中间矩形
+            canvas.drawRect(currentLeftX + half, mLeftY, currentRightX - half, mRightY, mCirclePaint);
+        }
     }
 
     /**
